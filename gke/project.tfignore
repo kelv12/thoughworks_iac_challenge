@@ -1,0 +1,24 @@
+
+module "service-projects" {
+  source                  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
+  version                 = "~> 10.1"
+  for_each                = var.service_projects
+  name                    = each.key
+  random_project_id       = true
+  org_id                  = var.organization_id
+  folder_id               = local.google_folder[each.value.stage][each.value.parent].name
+  billing_account         = var.billing_account
+  default_service_account = "deprivilege"
+  group_name              = try(each.value.owner, each.value.parent)
+  group_role              = "roles/iam.serviceAccountKeyAdmin"
+  sa_role                 = "roles/owner"
+  //shared_vpc            =
+
+
+  activate_api_identities = [{
+    api = "cloudbuild.googleapis.com"
+    roles = [
+      "roles/run.developer"
+    ]
+  }]
+}

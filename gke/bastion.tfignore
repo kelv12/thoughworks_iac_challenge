@@ -1,0 +1,19 @@
+locals {
+
+  subnet = "https://www.googleapis.com/compute/v1/projects/${data.terraform_remote_state.vpc_state.outputs.project_id}/regions/${var.gcp_region}/subnetworks/${var.gke_subnet}"
+
+}
+
+
+module "bastion_host" {
+  source                = "../../modules/bastion_host"
+  name                  = "bastion-test"
+  firewall_rule_name    = "allow-ssh-from-iap-to-tunnel-dev"
+  service_account_email = data.terraform_remote_state.proj_state.outputs.bastion_dev_project_sa_email
+  project               = data.terraform_remote_state.proj_state.outputs.dev_project_id
+  zone                  = var.bastion_zone
+  network               = data.terraform_remote_state.vpc_state.outputs.network_self_link
+  subnet                = local.subnet
+  members               = var.dev_project_infra_team
+  host_project          = data.terraform_remote_state.org_state.outputs.shared_vpc_host_project_id
+}
