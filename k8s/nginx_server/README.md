@@ -90,10 +90,10 @@ PROJ_ID=<dev_project_id/prod_project_id>
 NAMESPACE=wils
 
 # Pass required username.
-SQL_UNAME=nginx
+SQL_UNAME=roor
 
 # Pass required password.
-SQL_PASS=test
+SQL_PASS=password
 ```
 
 Create namespace:

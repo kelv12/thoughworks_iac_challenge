@@ -1,6 +1,0 @@
-nonMasqueradeCIDRs:
-   - 10.49.10.0/24
-   - 10.1.0.0/16
-masqLinkLocal: false
-masqLinkLocalIPv6: false
-resyncInterval: 60s
