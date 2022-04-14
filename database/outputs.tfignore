@@ -1,0 +1,29 @@
+output "master_instance_name" {
+  value       = module.mysql_db.master_instance_name
+  description = "SQL Master Instance Name"
+}
+output "master_instance_self_link" {
+  value       = module.mysql_db.master_instance_self_link
+  description = "The URI of the master instance"
+}
+output "private_ip_addresses" {
+  value       = module.mysql_db.private_ip_addresses
+  description = "The private IP address assigned for the master instance"
+}
+output "public_ip_address" {
+  value       = module.mysql_db.public_ip_address
+  description = "The first public (PRIMARY) IPv4 address assigned for the master instance"
+}
+output "test_database_01" {
+  description = "Test database details. e.g Id, name, instance, host_project, self_link"
+  value       = google_sql_database.test_database_01
+}
+output "test_user_02_password" {
+  description = ""
+  value       = random_password.password.result
+  sensitive   = true
+}
+output "instance_connection_name" {
+  value       = module.mysql_db.instance_connection_name
+  description = "The connection name of the master instance to be used in connection strings"
+}
