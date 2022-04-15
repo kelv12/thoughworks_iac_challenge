@@ -4,16 +4,13 @@
 Set variables:
 
 ```shell
-# Get the relevant value from `terraform output` command inside projects/serviceprojects.
-PROJ_ID=<dev_project_id/prod_project_id>
 
-# Get the value from `terraform output` command inside resources/<project folder>
+PROJ_ID=<project_id>
+
 BASTION_HOST=<bastion_hostname>
 
-# Get the value from `terraform output` command inside resources/<project folder>
 GKE_CLUSTER_NAME=<gke_name>
 
-# Get the value from `terraform output` command inside resources/<project folder>
 GKE_CLUSTER_LOCATION=<gke_location>
 
 # Run following command to get the cluster endpoint. Endpoint is set as a sensitive output in terraform, so have to use gcloud to get the output.
@@ -45,16 +42,12 @@ Now kubectl commands can be executed.
 Set variables.
 
 ```shell
-# Get the value from `terraform output` command inside resources/app_dev_project.
 INSTANCE_NAME=<master_instance_name>
 
-# Get the value from `terraform output` command inside resources/app_dev_project.
 INSTANCE_CONN_NAME=<instance_connection_name> 
 
-# Get the relevant value from `terraform output` command inside projects/serviceprojects.
 PROJ_ID=<dev_project_id/prod_project_id>
 
-# Use the same value passed for knamespace in resources/dev_project/terraform.tfvars
 # NAMESPACE=yassir
 
 # Pass required username.
