@@ -34,7 +34,7 @@ A cloud storage bucket is created to store all the statefiles.  Remote backend i
 Service account is created for authentication with all the resources. The following IAM roles have been assigned to the SA: Project admin, compute admin kubernetes engine clusters admin and cloud sql admin. The concept of least-privilege is been used
 
 
-### GCP networking and access
+### GCP networking
 
 A VPC networt and 2 subnets is deployed in the project.
 To run the networking deployment, do the following:
