@@ -40,38 +40,6 @@ gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_
 
 Now kubectl commands can be executed.
 
-### Connect to GKE via local shell and port-forward
-
-Port forward via bastion:
-```shell
-gcloud compute ssh $BASTION_HOST --project $PROJ_ID --tunnel-through-iap --ssh-flag="-L 8443:$GKE_ENDPOINT:443"
-```
-
-In a new terminal, get kubeconfig credentials. For the following commands to work,
-the variables above need to be exported again:
-
-```shell
-KUBECONFIG=./kubeconfig.yaml gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_LOCATION --project $PROJ_ID
-```
-
-Replace endpoint with https://kubernetes.default:8443 (use 'gsed' on mac):
-
-```shell
-sed -i 's/server:.*$/server\:\ https\:\/\/kubernetes.default\:8443/g' ./kubeconfig.yaml
-```
-
-Add a host entry in the local machine:
-
-```shell
-sudo echo '127.0.0.1 kubernetes kubernetes.default' >> /etc/hosts
-```
-
-Now kubectl commands can be executed.
-For a custom configuration, the following command can be used:
-
-```shell
-KUBECONFIG=./kubeconfig.yaml kubectl get pods
-```
 ## Deploy nginx
 
 Set variables.
@@ -87,10 +55,10 @@ INSTANCE_CONN_NAME=<instance_connection_name>
 PROJ_ID=<dev_project_id/prod_project_id>
 
 # Use the same value passed for knamespace in resources/dev_project/terraform.tfvars
-NAMESPACE=wils
+# NAMESPACE=yassir
 
 # Pass required username.
-SQL_UNAME=roor
+SQL_UNAME=root
 
 # Pass required password.
 SQL_PASS=password
@@ -114,11 +82,11 @@ kubectl apply -f ksa.yml  -n $NAMESPACE
 ```
 
 Make sure the sql instance is running.
-Create database and user. This can be done in terraform as well.
+<!-- Create database and user. This can be done in terraform as well.
 
 ```shell
 gcloud sql databases create nginx --instance $INSTANCE_NAME --project $PROJ_ID
-gcloud sql users create $SQL_UNAME --host=% --instance $INSTANCE_NAME --password $SQL_PASS --project $PROJ_ID
+gcloud sql users create $SQL_UNAME --host=% --instance $INSTANCE_NAME --password $SQL_PASS --project $PROJ_ID -->
 ```
 
 Create kubernetes secret using the previously created credentials:

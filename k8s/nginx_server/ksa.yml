@@ -4,4 +4,4 @@ metadata:
   name: yassir
   annotations:
     # Example: iam.gke.io/gcp-service-account: dev-sql@dev-project-01-691a.iam.gserviceaccount.com
-    iam.gke.io/gcp-service-account: dev-sql@CHANGEME.iam.gserviceaccount.com
+    iam.gke.io/gcp-service-account: yassir-sql@CHANGEME.iam.gserviceaccount.com

@@ -18,8 +18,6 @@ spec:
         - image: nginx
           name: nginx
           env:
-            - name: NGINX_DB_HOST
-              value: 127.0.0.1:3306
             - name: NGINX_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -29,7 +27,7 @@ spec:
               value: root
           ports:
             - containerPort: 80
-              name: wordpress
+              name: nginx
         - name: cloud-sql-proxy
           # It is recommended to use the latest version of the Cloud SQL proxy
           # Make sure to update on a regular schedule!
