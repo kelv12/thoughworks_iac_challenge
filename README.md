@@ -66,3 +66,8 @@ To run GKE & bastion host deployment, do the following:
 2. terraform init
 3. terraform plan
 4. terraform apply
+
+## Deploy webserver
+To deploy an nginx webser to a gke instance, do the following"
+1. cd k8s
+2. see the readme file for the deployment steps
